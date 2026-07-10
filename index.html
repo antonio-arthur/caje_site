@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAJE - Consultoria e Assessoria Júnior de Economia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#111111',
+                        secondary: '#FFFFFF',
+                        background: '#F5F5F5',
+                        'text-secondary': '#4B5563',
+                        gold: '#C9A227',
+                        'gold-dark': '#A67C00',
+                        'gray-light': '#E5E7EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', 'Manrope', sans-serif;
+        }
+        body {
+            font-family: 'Inter', 'Manrope', sans-serif;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* ===== ANIMAÇÕES DO HERO ===== */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-gradient-animated {
+            background-size: 200% 200%;
+            animation: gradientMove 12s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-badge {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .hero-title {
+            animation: fadeInUp 0.9s ease 0.15s forwards;
+            opacity: 0;
+        }
+        .hero-description {
+            animation: fadeInUp 0.9s ease 0.3s forwards;
+            opacity: 0;
+        }
+        .hero-buttons {
+            animation: fadeInUp 0.9s ease 0.45s forwards;
+            opacity: 0;
+        }
+        .hero-stat-1 {
+            animation: fadeInUp 0.9s ease 0.6s forwards;
+            opacity: 0;
+        }
+        .hero-stat-2 {
+            animation: fadeInUp 0.9s ease 0.75s forwards;
+            opacity: 0;
+        }
+        .hero-stat-3 {
+            animation: fadeInUp 0.9s ease 0.9s forwards;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .hero-logo-float {
+            animation: float 5s ease-in-out infinite, fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        /* Ondas */
+        .wave {
+            animation: waveMove 12s ease-in-out infinite alternate;
+        }
+        .wave1 { animation-duration: 14s; }
+        .wave2 { animation-duration: 18s; animation-delay: -2s; }
+        .wave3 { animation-duration: 16s; animation-delay: -4s; }
+        .wave4 { animation-duration: 20s; animation-delay: -6s; }
+        @keyframes waveMove {
+            0% { transform: translateX(-90px); }
+            100% { transform: translateX(90px); }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-background text-primary">
+
+    <!-- ==================== HEADER ==================== -->
+    <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-18">
+                <button onclick="scrollToSection('inicio')" class="flex items-center gap-2.5 group">
+                    <img src="./assets/logo-caje.png" alt="Logo CAJE" class="h-12 w-auto" />
+                </button>
+                <nav class="hidden lg:flex items-center gap-8">
+                    <button onclick="scrollToSection('inicio')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Início</button>
+                    <button onclick="scrollToSection('sobre')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Quem Somos</button>
+                    <button onclick="scrollToSection('servicos')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Serviços</button>
+                    <button onclick="scrollToSection('projetos')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Projetos</button>
+                    <button onclick="scrollToSection('equipe')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Equipe</button>
+                    <button onclick="scrollToSection('contato')" class="nav-link text-sm font-medium transition-colors hover:text-gold text-primary">Contato</button>
+                </nav>
+                <div class="hidden lg:flex items-center gap-3">
+                    <button onclick="scrollToSection('contato')" class="px-5 py-2.5 rounded-xl bg-gold text-white text-sm font-semibold hover:bg-gold-dark transition-all shadow-sm hover:shadow-md">
+                        Solicite uma Consultoria
+                    </button>
+                </div>
+                <button id="mobile-toggle" class="lg:hidden p-2 rounded-lg text-primary">
+                    <i data-feather="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-slate-100 shadow-xl">
+            <div class="px-6 py-4 flex flex-col gap-1">
+                <button onclick="scrollToSection('inicio')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Início</button>
+                <button onclick="scrollToSection('sobre')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Quem Somos</button>
+                <button onclick="scrollToSection('servicos')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Serviços</button>
+                <button onclick="scrollToSection('projetos')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Projetos</button>
+                <button onclick="scrollToSection('equipe')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Equipe</button>
+                <button onclick="scrollToSection('contato')" class="text-left py-3 text-primary font-medium text-sm border-b border-slate-50">Contato</button>
+                <button onclick="scrollToSection('contato')" class="mt-3 w-full py-3 rounded-xl bg-gold text-white text-sm font-semibold hover:bg-gold-dark transition-colors">
+                    Solicite uma Consultoria
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== HERO COM ONDAS ESCURAS (sem manchas) ==================== -->
+        <section id="inicio" class="relative min-h-screen hero-gradient-animated bg-gradient-to-b from-white via-[#F3F4F6] to-[#E8E8E8] flex items-center overflow-hidden">
+
+            <!-- SVG de ondas horizontais (mais escuras) -->
+            <div class="absolute inset-0 pointer-events-none opacity-35">
+                <svg class="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="waveBlur" x="-5%" y="-5%" width="110%" height="110%">
+                            <feGaussianBlur stdDeviation="1.2" />
+                        </filter>
+                    </defs>
+                    <g filter="url(#waveBlur)" stroke="#000000" stroke-width="2.5" fill="none" opacity="0.35">
+                        <path d="M 0 180 Q 150 140 300 180 T 600 180 T 900 180 T 1200 180" class="wave wave1" />
+                        <path d="M 0 380 Q 180 330 360 380 T 720 380 T 1080 380 T 1200 380" class="wave wave2" />
+                        <path d="M 0 580 Q 200 520 400 580 T 800 580 T 1200 580" class="wave wave3" />
+                        <path d="M 0 730 Q 160 690 320 730 T 640 730 T 960 730 T 1200 730" class="wave wave4" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- NÃO HÁ MAIS BLOCOS DE COR (manchas verdes/amarelas) nem partículas -->
+
+            <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28 w-full z-10">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- Coluna esquerda -->
+                    <div class="space-y-8">
+                        <div class="hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#D1D5DB] bg-[#E5E7EB] text-primary text-xs font-medium tracking-wide">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                            Empresa Júnior · UFPB · 
+                        </div>
+                        <!-- Título totalmente preto (sem gradiente) -->
+                        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-primary leading-[1.1] tracking-tight">
+                            Soluções econômicas para transformar decisões em resultados.
+                        </h1>
+                        <p class="hero-description text-lg text-text-secondary leading-relaxed max-w-lg">
+                            A CAJE conecta conhecimento acadêmico e prática profissional para oferecer consultoria econômica de qualidade a empresas, instituições e órgãos públicos.
+                        </p>
+                        <div class="hero-buttons flex flex-wrap gap-4">
+                            <button onclick="scrollToSection('servicos')" class="group flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gold text-white font-semibold text-sm hover:bg-gold-dark transition-all shadow-lg shadow-gold/30 hover:shadow-gold/40">
+                                Conheça nossos serviços
+                                <i data-feather="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                            </button>
+                            <button onclick="scrollToSection('contato')" class="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[#D1D5DB] text-primary font-semibold text-sm hover:bg-[#E5E7EB] transition-all">
+                                Entre em contato
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-8 pt-4 border-t border-[#D1D5DB]">
+                            <div class="hero-stat-1"><div class="text-2xl font-bold text-primary">teste</div><div class="text-xs text-text-secondary mt-0.5">Projetos entregues</div></div>
+                            <div class="hero-stat-2"><div class="text-2xl font-bold text-primary">teste</div><div class="text-xs text-text-secondary mt-0.5">Clientes atendidos</div></div>
+                            <div class="hero-stat-3"><div class="text-2xl font-bold text-primary">teste</div><div class="text-xs text-text-secondary mt-0.5">Anos de experiência</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna direita: logo flutuante -->
+                    <div class="hidden lg:flex items-center justify-center hero-logo-float">
+                        <img src="./assets/logo-caje.png" alt="Logo CAJE" class="w-[500px] object-contain" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transição suave -->
+            <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[#F5F5F5] to-transparent"></div>
+        </section>
+
+        <!-- ==================== SOBRE ==================== -->
+        <section id="sobre" class="py-24 lg:py-32 bg-[#F5F5F5]">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Quem Somos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary animate-on-scroll">Consultoria júnior com excelência acadêmica</h2>
+                    <p class="mt-4 text-base leading-relaxed text-text-secondary animate-on-scroll">Somos uma Empresa Júnior vinculada ao Curso de Ciências Econômicas da Universidade Federal da Paraíba. Unimos rigor científico e agilidade consultiva para gerar impacto real.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="animate-on-scroll p-6 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                            <i data-feather="globe" class="text-gold w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-primary mb-2">Missão</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed">Oferecer soluções econômicas de alta qualidade, promovendo o desenvolvimento de nossos membros e das organizações que atendemos.</p>
+                    </div>
+                    <div class="animate-on-scroll p-6 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                            <i data-feather="crosshair" class="text-emerald-600 w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-primary mb-2">Visão</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed">Ser referência nacional em consultoria econômica júnior, reconhecida pela inovação, metodologia e impacto socioeconômico.</p>
+                    </div>
+                    <div class="animate-on-scroll p-6 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                            <i data-feather="shield" class="text-indigo-600 w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-primary mb-2">Valores</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed">Excelência, ética, comprometimento, inovação e responsabilidade social guiam todas as nossas entregas e relações.</p>
+                    </div>
+                    <div class="animate-on-scroll p-6 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                        <div class="w-11 h-11 rounded-xl bg-violet-50 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                            <i data-feather="users" class="text-violet-600 w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-primary mb-2">Estrutura</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed">Equipe multidisciplinar com especialistas em economia, ciência de dados, BI e planejamento estratégico, sob orientação docente.</p>
+                    </div>
+                </div>
+                <div class="rounded-3xl overflow-hidden relative h-64 lg:h-80 bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&h=600&fit=crop&auto=format" alt="Equipe CAJE em reunião de consultoria" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent flex items-center px-10 lg:px-16">
+                        <div class="max-w-md">
+                            <p class="text-white/70 text-sm font-medium mb-2 tracking-widest uppercase">Nossa história</p>
+                            <p class="text-white text-lg lg:text-2xl font-semibold leading-snug">Desde 2018, conectando o conhecimento universitário ao desenvolvimento econômico da Paraíba.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SERVIÇOS ==================== -->
+        <section id="servicos" class="py-24 lg:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Nossos Serviços</span>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary animate-on-scroll">Soluções econômicas para cada desafio</h2>
+                    <p class="mt-4 text-base leading-relaxed text-text-secondary animate-on-scroll">Portfólio completo de serviços de consultoria, análise e dados — cada um desenhado para gerar insights acionáveis e resultados mensuráveis.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="trending-up" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Consultoria Econômica</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Diagnósticos econômicos e recomendações estratégicas baseadas em evidências para organizações de todos os portes.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="search" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Estudos de Mercado</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Análises aprofundadas de mercados regionais e setoriais com metodologia acadêmica rigorosa.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="book-open" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Pesquisa Econômica</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Produção de estudos técnicos, notas e relatórios econômicos com embasamento teórico sólido.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="crosshair" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Planejamento Estratégico</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Apoio na formulação de metas, indicadores e planos de ação alinhados ao contexto econômico.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="activity" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Ciência de Dados</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Modelagem preditiva, machine learning e análise estatística aplicados a problemas reais.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="database" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Engenharia de Dados</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Estruturação de pipelines, integração e governança de dados para decisões mais eficientes.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="bar-chart-2" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Business Intelligence</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Transformação de dados brutos em inteligência competitiva com relatórios e painéis estratégicos.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="activity" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Dashboards Interativos</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Desenvolvimento de painéis dinâmicos para monitoramento de KPIs e indicadores em tempo real.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="line-chart" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Indicadores Econômicos</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Construção e acompanhamento de indicadores macroeconômicos e regionais personalizados.</p>
+                    </div>
+                    <div class="animate-on-scroll group p-5 rounded-2xl bg-background border border-slate-100 hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 cursor-default">
+                        <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors"><i data-feather="bar-chart" class="text-gold w-4 h-4"></i></div>
+                        <h3 class="font-semibold text-primary text-sm mb-1.5">Análise Estatística</h3>
+                        <p class="text-xs text-text-secondary leading-relaxed">Aplicação de métodos econométricos e estatísticos para suporte a decisões e pesquisas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== DIFERENCIAIS ==================== -->
+        <section class="py-24 lg:py-32 bg-[#F5F5F5]">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Por que a CAJE?</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight tracking-tight mb-6">Diferenciais que fazem a diferença nos seus resultados</h2>
+                        <p class="text-text-secondary text-base leading-relaxed mb-10">Combinamos a profundidade do conhecimento acadêmico com a agilidade e o foco em resultado que o mercado exige. Cada projeto é único e recebe atenção personalizada.</p>
+                        <button onclick="scrollToSection('contato')" class="group flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gold text-white font-semibold text-sm hover:bg-gold-dark transition-all shadow-sm">
+                            Fale com nossa equipe
+                            <i data-feather="chevron-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                        </button>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="users" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Professores Orientadores</h4><p class="text-xs text-text-secondary leading-relaxed">Projetos supervisionados por docentes com expertise acadêmica e experiência de mercado.</p></div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="award" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Equipe Qualificada</h4><p class="text-xs text-text-secondary leading-relaxed">Membros em formação constante, com certificações e treinamentos em ferramentas modernas.</p></div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="bar-chart-2" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Soluções Baseadas em Dados</h4><p class="text-xs text-text-secondary leading-relaxed">Todas as análises e recomendações são fundamentadas em dados concretos e metodologia científica.</p></div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="layers" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Atendimento Personalizado</h4><p class="text-xs text-text-secondary leading-relaxed">Cada cliente recebe um plano de trabalho customizado, com acompanhamento próximo durante todo o projeto.</p></div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="activity" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Preço Acessível</h4><p class="text-xs text-text-secondary leading-relaxed">Serviços de qualidade internacional com custo compatível com a realidade de PMEs e órgãos públicos.</p></div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll p-5 rounded-2xl border border-slate-100 bg-white hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all duration-500 group">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-background border border-slate-100 flex items-center justify-center flex-shrink-0 group-hover:border-gold/30 transition-colors shadow-xs"><i data-feather="shield" class="text-gold w-4 h-4"></i></div>
+                                <div><h4 class="font-semibold text-primary text-sm mb-1">Metodologias Científicas</h4><p class="text-xs text-text-secondary leading-relaxed">Rigor metodológico garantido pela vinculação à universidade e pela supervisão acadêmica contínua.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROJETOS ==================== -->
+        <section id="projetos" class="py-24 lg:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Projetos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary animate-on-scroll">Casos de sucesso que inspiram</h2>
+                    <p class="mt-4 text-base leading-relaxed text-text-secondary animate-on-scroll">Conheça alguns dos projetos que desenvolvemos para clientes públicos e privados na Paraíba e no Nordeste.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll group rounded-2xl overflow-hidden bg-background border border-slate-100 hover:border-gold/30 hover:shadow-2xl hover:shadow-gold/5 transition-all duration-500">
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=360&fit=crop&auto=format" alt="Diagnóstico Econômico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-gold/90 text-white text-xs font-semibold">Setor Público</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-primary leading-snug mb-3 text-base">Diagnóstico Econômico do Município de Campina Grande</h3>
+                            <p class="text-sm text-text-secondary leading-relaxed mb-5">Levantamento e análise dos principais indicadores socioeconômicos, identificando gargalos e oportunidades para o desenvolvimento regional.</p>
+                            <button class="group/btn flex items-center gap-1.5 text-gold text-sm font-semibold hover:gap-2.5 transition-all">
+                                Saiba mais <i data-feather="external-link" class="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll group rounded-2xl overflow-hidden bg-background border border-slate-100 hover:border-gold/30 hover:shadow-2xl hover:shadow-gold/5 transition-all duration-500">
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=360&fit=crop&auto=format" alt="Estudo de Viabilidade" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-gold/90 text-white text-xs font-semibold">Cooperativas</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-primary leading-snug mb-3 text-base">Estudo de Viabilidade para Cooperativa Agroindustrial</h3>
+                            <p class="text-sm text-text-secondary leading-relaxed mb-5">Análise de viabilidade econômica e financeira para expansão das operações de cooperativa do interior paraibano.</p>
+                            <button class="group/btn flex items-center gap-1.5 text-gold text-sm font-semibold hover:gap-2.5 transition-all">
+                                Saiba mais <i data-feather="external-link" class="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="animate-on-scroll group rounded-2xl overflow-hidden bg-background border border-slate-100 hover:border-gold/30 hover:shadow-2xl hover:shadow-gold/5 transition-all duration-500">
+                        <div class="relative h-48 bg-slate-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=640&h=360&fit=crop&auto=format" alt="Painel de BI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-gold/90 text-white text-xs font-semibold">PMEs</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-primary leading-snug mb-3 text-base">Painel de BI para Rede de Varejo Local</h3>
+                            <p class="text-sm text-text-secondary leading-relaxed mb-5">Desenvolvimento de dashboard interativo integrando dados de vendas, estoque e comportamento de consumidores para tomada de decisão em tempo real.</p>
+                            <button class="group/btn flex items-center gap-1.5 text-gold text-sm font-semibold hover:gap-2.5 transition-all">
+                                Saiba mais <i data-feather="external-link" class="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== EQUIPE ==================== -->
+        <section id="equipe" class="py-24 lg:py-32 bg-[#F5F5F5]">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Nossa Equipe</span>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary animate-on-scroll">Pessoas que movem a CAJE</h2>
+                    <p class="mt-4 text-base leading-relaxed text-text-secondary animate-on-scroll">Economistas em formação, analistas de dados e estrategistas com paixão por transformar informação em decisão.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&auto=format" alt="Ana Beatriz Lins" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Ana Beatriz Lins</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Diretora Presidente</p>
+                    </div>
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&auto=format" alt="Carlos Mendes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Carlos Mendes</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Diretor de Projetos</p>
+                    </div>
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&auto=format" alt="Mariana Oliveira" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Mariana Oliveira</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Pesquisadora Sênior</p>
+                    </div>
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&auto=format" alt="Rafael Souza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Rafael Souza</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Cientista de Dados</p>
+                    </div>
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&auto=format" alt="Isabela Costa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Isabela Costa</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Analista de BI</p>
+                    </div>
+                    <div class="animate-on-scroll group text-center transition-all duration-500">
+                        <div class="relative mx-auto w-24 h-24 mb-3">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&auto=format" alt="Lucas Ferreira" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-primary text-sm leading-tight">Lucas Ferreira</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Consultor Econômico</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== DEPOIMENTOS ==================== -->
+        <section class="py-24 lg:py-32 bg-primary relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
+            <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 text-white">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Depoimentos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight animate-on-scroll">O que nossos clientes dizem</h2>
+                    <p class="mt-4 text-base leading-relaxed text-slate-300 animate-on-scroll">A credibilidade da CAJE é construída projeto a projeto, cliente a cliente.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="animate-on-scroll p-7 rounded-2xl bg-white/5 border border-white/8 hover:bg-white/8 hover:border-white/12 transition-all duration-500">
+                        <div class="flex gap-1 mb-5">
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">"A CAJE entregou um diagnóstico econômico preciso e acionável. A qualidade técnica superou nossas expectativas para um projeto neste valor."</p>
+                        <div class="font-semibold text-white text-sm">Roberto Alcântara</div>
+                        <div class="text-slate-500 text-xs mt-0.5">Prefeitura de João Pessoa – PB</div>
+                    </div>
+                    <div class="animate-on-scroll p-7 rounded-2xl bg-white/5 border border-white/8 hover:bg-white/8 hover:border-white/12 transition-all duration-500">
+                        <div class="flex gap-1 mb-5">
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">"Profissionalismo, pontualidade e resultados concretos. O estudo de viabilidade foi fundamental para nossa decisão de expansão."</p>
+                        <div class="font-semibold text-white text-sm">Fernanda Rocha</div>
+                        <div class="text-slate-500 text-xs mt-0.5">Cooperativa Central Paraibana</div>
+                    </div>
+                    <div class="animate-on-scroll p-7 rounded-2xl bg-white/5 border border-white/8 hover:bg-white/8 hover:border-white/12 transition-all duration-500">
+                        <div class="flex gap-1 mb-5">
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                            <i data-feather="star" class="text-gold fill-gold w-4 h-4"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">"Recomendo a CAJE sem hesitação. O rigor metodológico e a capacidade de traduzir dados em insights estratégicos são diferenciais notáveis."</p>
+                        <div class="font-semibold text-white text-sm">Dr. Jorge Menezes</div>
+                        <div class="text-slate-500 text-xs mt-0.5">Sebrae – PB</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PARCEIROS ==================== -->
+        <section class="py-16 bg-white border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <p class="text-center text-xs font-semibold tracking-widest text-text-secondary uppercase mb-10">Parceiros e Instituições Apoiadoras</p>
+                <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">UFPB</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">SEBRAE</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">CNPq</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">FAPESQ</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">BNB</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">BNDES</div>
+                    <div class="px-6 py-3 rounded-xl bg-background border border-slate-100 text-text-secondary font-bold text-sm tracking-wider hover:text-gold hover:border-gold/30 transition-all cursor-default select-none">Governo PB</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CTA FINAL ==================== -->
+        <section class="py-24 lg:py-32 bg-gold relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.05]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+            <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 blur-3xl"></div>
+            <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center">
+                <p class="text-white/80 text-xs font-semibold tracking-widest uppercase mb-4">Pronto para começar?</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">Vamos desenvolver soluções econômicas para o seu negócio?</h2>
+                <p class="text-white/80 text-base leading-relaxed mb-10 max-w-xl mx-auto">Entre em contato e descubra como a CAJE pode ajudar sua organização a tomar decisões mais inteligentes baseadas em dados.</p>
+                <button onclick="scrollToSection('contato')" class="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-gold font-bold text-sm hover:bg-gray-50 transition-all shadow-xl shadow-gold/30">
+                    Solicitar Consultoria
+                    <i data-feather="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== CONTATO ==================== -->
+        <section id="contato" class="py-24 lg:py-32 bg-[#F5F5F5]">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Contato</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-primary leading-tight tracking-tight mb-4">Fale com a CAJE</h2>
+                        <p class="text-text-secondary text-base leading-relaxed mb-10">Preencha o formulário ou entre em contato diretamente. Respondemos em até 24 horas úteis.</p>
+                        <div class="space-y-5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0"><i data-feather="mail" class="text-gold w-4 h-4"></i></div>
+                                <div><div class="text-xs text-text-secondary font-medium">E-mail</div><div class="text-primary text-sm font-medium">contato@cajeufpb.com.br</div></div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0"><i data-feather="phone" class="text-gold w-4 h-4"></i></div>
+                                <div><div class="text-xs text-text-secondary font-medium">WhatsApp</div><div class="text-primary text-sm font-medium">(83) 9 9999-0000</div></div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0"><i data-feather="map-pin" class="text-gold w-4 h-4"></i></div>
+                                <div><div class="text-xs text-text-secondary font-medium">Endereço</div><div class="text-primary text-sm font-medium">Campus I, Lot. Cidade Universitária, João Pessoa – PB</div></div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-10">
+                            <a href="#" class="w-10 h-10 rounded-xl border border-slate-100 bg-white flex items-center justify-center text-text-secondary hover:bg-gold hover:border-gold hover:text-white transition-all">
+                                <i data-feather="instagram" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl border border-slate-100 bg-white flex items-center justify-center text-text-secondary hover:bg-gold hover:border-gold hover:text-white transition-all">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl border border-slate-100 bg-white flex items-center justify-center text-text-secondary hover:bg-gold hover:border-gold hover:text-white transition-all">
+                                <i data-feather="twitter" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100" id="form-container">
+                        <form id="contact-form" class="space-y-5">
+                            <h3 class="font-bold text-primary text-lg mb-6">Solicitar consultoria</h3>
+                            <div>
+                                <label for="name" class="block text-xs font-semibold text-primary mb-2">Nome completo</label>
+                                <input type="text" id="name" placeholder="João da Silva" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold text-primary mb-2">E-mail corporativo</label>
+                                <input type="email" id="email" placeholder="joao@empresa.com.br" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                            </div>
+                            <div>
+                                <label for="org" class="block text-xs font-semibold text-primary mb-2">Organização</label>
+                                <input type="text" id="org" placeholder="Empresa / Prefeitura / Cooperativa" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                            </div>
+                            <div>
+                                <label for="msg" class="block text-xs font-semibold text-primary mb-2">Como podemos ajudar?</label>
+                                <textarea id="msg" rows="4" placeholder="Descreva brevemente o seu desafio ou projeto..." required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gold text-white font-semibold text-sm hover:bg-gold-dark transition-all shadow-sm hover:shadow-md">Enviar solicitação</button>
+                            <p class="text-xs text-text-secondary text-center">Seus dados estão seguros. Não compartilhamos com terceiros.</p>
+                        </form>
+                        <div id="success-message" class="hidden text-center py-12">
+                            <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-5">
+                                <i data-feather="check-circle" class="text-gold w-7 h-7"></i>
+                            </div>
+                            <h3 class="font-bold text-primary text-xl mb-2">Mensagem enviada!</h3>
+                            <p class="text-text-secondary text-sm">Entraremos em contato em até 24 horas úteis.</p>
+                            <button id="new-message-btn" class="mt-6 text-gold text-sm font-medium hover:underline">Enviar nova mensagem</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-primary text-slate-400">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div class="lg:col-span-2">
+                    <img src="./assets/logo-caje.png" alt="Logo CAJE" class="h-12 w-auto mb-4" />
+                    <p class="text-sm leading-relaxed max-w-xs mb-6">Consultoria e Assessoria Júnior de Economia. Empresa Júnior vinculada à UFPB, promovendo desenvolvimento econômico com rigor acadêmico.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-gold/30 flex items-center justify-center transition-colors">
+                            <i data-feather="instagram" class="text-slate-400 hover:text-white w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-gold/30 flex items-center justify-center transition-colors">
+                            <i data-feather="linkedin" class="text-slate-400 hover:text-white w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-gold/30 flex items-center justify-center transition-colors">
+                            <i data-feather="twitter" class="text-slate-400 hover:text-white w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4">Links rápidos</h4>
+                    <ul class="space-y-2.5">
+                        <li><button onclick="scrollToSection('inicio')" class="text-sm hover:text-gold transition-colors">Início</button></li>
+                        <li><button onclick="scrollToSection('sobre')" class="text-sm hover:text-gold transition-colors">Quem Somos</button></li>
+                        <li><button onclick="scrollToSection('servicos')" class="text-sm hover:text-gold transition-colors">Serviços</button></li>
+                        <li><button onclick="scrollToSection('projetos')" class="text-sm hover:text-gold transition-colors">Projetos</button></li>
+                        <li><button onclick="scrollToSection('equipe')" class="text-sm hover:text-gold transition-colors">Equipe</button></li>
+                        <li><button onclick="scrollToSection('contato')" class="text-sm hover:text-gold transition-colors">Contato</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2"><i data-feather="mail" class="mt-0.5 flex-shrink-0 text-gold w-3.5 h-3.5"></i> contato@cajeufpb.com.br</li>
+                        <li class="flex items-start gap-2"><i data-feather="phone" class="mt-0.5 flex-shrink-0 text-gold w-3.5 h-3.5"></i> (83) 9 9999-0000</li>
+                        <li class="flex items-start gap-2"><i data-feather="map-pin" class="mt-0.5 flex-shrink-0 text-gold w-3.5 h-3.5"></i> Campus I, Lot. Cidade Universitária,<br>João Pessoa – PB, 58051-900</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>© 2026 CAJE – Consultoria e Assessoria Júnior de Economia. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-1 text-slate-500">
+                    <span>CNPJ: 00.000.000/0001-00 · João Pessoa, PB</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        feather.replace();
+
+        window.scrollToSection = function(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('mobile-menu').classList.add('hidden');
+        };
+
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('bg-white/95', 'backdrop-blur-md', 'border-b', 'border-slate-100', 'shadow-sm');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('bg-white/95', 'backdrop-blur-md', 'border-b', 'border-slate-100', 'shadow-sm');
+                header.classList.add('bg-transparent');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const newMessageBtn = document.getElementById('new-message-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+        });
+
+        newMessageBtn.addEventListener('click', () => {
+            successMessage.classList.add('hidden');
+            form.classList.remove('hidden');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
