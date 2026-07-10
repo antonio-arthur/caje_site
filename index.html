@@ -122,6 +122,45 @@
             0% { transform: translateX(-90px); }
             100% { transform: translateX(90px); }
         }
+
+        /* ===== BLOB DECORATIVO ===== */
+        .team-blob {
+            position: absolute;
+            top: -80px;
+            right: -60px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, #C9A227, #A67C00);
+            border-radius: 62% 38% 42% 58% / 48% 42% 58% 52%;
+            opacity: 0.08;
+            transform: rotate(-10deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+        @media (min-width: 768px) {
+            .team-blob {
+                width: 400px;
+                height: 400px;
+                top: -120px;
+                right: -80px;
+            }
+        }
+
+        /* Hover do card */
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.08);
+        }
+        .team-card:hover .social-icon {
+            color: #C9A227;
+            border-color: #C9A227;
+        }
+        .social-icon {
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-background text-primary">
@@ -167,10 +206,10 @@
     </header>
 
     <main>
-        <!-- ==================== HERO COM ONDAS ESCURAS (sem manchas) ==================== -->
+        <!-- ==================== HERO ==================== -->
         <section id="inicio" class="relative min-h-screen hero-gradient-animated bg-gradient-to-b from-white via-[#F3F4F6] to-[#E8E8E8] flex items-center overflow-hidden">
 
-            <!-- SVG de ondas horizontais (mais escuras) -->
+            <!-- Ondas -->
             <div class="absolute inset-0 pointer-events-none opacity-35">
                 <svg class="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -187,17 +226,13 @@
                 </svg>
             </div>
 
-            <!-- NÃO HÁ MAIS BLOCOS DE COR (manchas verdes/amarelas) nem partículas -->
-
             <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28 w-full z-10">
                 <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <!-- Coluna esquerda -->
                     <div class="space-y-8">
                         <div class="hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#D1D5DB] bg-[#E5E7EB] text-primary text-xs font-medium tracking-wide">
                             <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
-                            Empresa Júnior · UFPB · 
+                            Empresa Júnior · UFPB
                         </div>
-                        <!-- Título totalmente preto (sem gradiente) -->
                         <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-primary leading-[1.1] tracking-tight">
                             Soluções econômicas para transformar decisões em resultados.
                         </h1>
@@ -219,15 +254,12 @@
                             <div class="hero-stat-3"><div class="text-2xl font-bold text-primary">teste</div><div class="text-xs text-text-secondary mt-0.5">Anos de experiência</div></div>
                         </div>
                     </div>
-
-                    <!-- Coluna direita: logo flutuante -->
                     <div class="hidden lg:flex items-center justify-center hero-logo-float">
                         <img src="./assets/logo-caje.png" alt="Logo CAJE" class="w-[500px] object-contain" />
                     </div>
                 </div>
             </div>
 
-            <!-- Transição suave -->
             <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[#F5F5F5] to-transparent"></div>
         </section>
 
@@ -454,68 +486,120 @@
             </div>
         </section>
 
-        <!-- ==================== EQUIPE ==================== -->
-        <section id="equipe" class="py-24 lg:py-32 bg-[#F5F5F5]">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- ==================== EQUIPE (NOVO LAYOUT TEAM CARDS) ==================== -->
+        <section id="equipe" class="py-24 lg:py-32 bg-white relative overflow-hidden">
+            <!-- Blob decorativo (abstract shape) -->
+            <div class="team-blob"></div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Nossa Equipe</span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold/10 text-gold border border-gold/20 mb-4">Nosso Time</span>
                     <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-primary animate-on-scroll">Pessoas que movem a CAJE</h2>
                     <p class="mt-4 text-base leading-relaxed text-text-secondary animate-on-scroll">Economistas em formação, analistas de dados e estrategistas com paixão por transformar informação em decisão.</p>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&auto=format" alt="Ana Beatriz Lins" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                <!-- Grid de cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card 1 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&auto=format" alt="Ana Beatriz Lins" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Ana Beatriz Lins</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Diretora Presidente</p>
+                        <h3 class="text-lg font-bold text-primary">Ana Beatriz Lins</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Diretora Presidente</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&auto=format" alt="Carlos Mendes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                    <!-- Card 2 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&auto=format" alt="Carlos Mendes" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Carlos Mendes</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Diretor de Projetos</p>
+                        <h3 class="text-lg font-bold text-primary">Carlos Mendes</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Diretor de Projetos</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&auto=format" alt="Mariana Oliveira" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                    <!-- Card 3 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&auto=format" alt="Mariana Oliveira" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Mariana Oliveira</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Pesquisadora Sênior</p>
+                        <h3 class="text-lg font-bold text-primary">Mariana Oliveira</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Pesquisadora Sênior</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&auto=format" alt="Rafael Souza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                    <!-- Card 4 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&auto=format" alt="Rafael Souza" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Rafael Souza</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Cientista de Dados</p>
+                        <h3 class="text-lg font-bold text-primary">Rafael Souza</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Cientista de Dados</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&auto=format" alt="Isabela Costa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                    <!-- Card 5 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&auto=format" alt="Isabela Costa" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Isabela Costa</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Analista de BI</p>
+                        <h3 class="text-lg font-bold text-primary">Isabela Costa</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Analista de BI</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="animate-on-scroll group text-center transition-all duration-500">
-                        <div class="relative mx-auto w-24 h-24 mb-3">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 ring-2 ring-slate-100 group-hover:ring-gold/30 transition-all">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&auto=format" alt="Lucas Ferreira" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            </div>
+
+                    <!-- Card 6 -->
+                    <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
+                        <div class="relative mx-auto w-28 h-28 mb-4">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&auto=format" alt="Lucas Ferreira" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
                         </div>
-                        <h4 class="font-semibold text-primary text-sm leading-tight">Lucas Ferreira</h4>
-                        <p class="text-xs text-text-secondary mt-0.5">Consultor Econômico</p>
+                        <h3 class="text-lg font-bold text-primary">Lucas Ferreira</h3>
+                        <p class="text-sm text-gold font-medium mb-3">Consultor Econômico</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="linkedin" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold transition-colors">
+                                <i data-feather="github" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
