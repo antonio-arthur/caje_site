@@ -125,6 +125,7 @@
 
         .team-card {
             transition: all 0.3s ease;
+            min-height: 346px;
         }
         .team-card:hover {
             transform: translateY(-6px);
@@ -133,6 +134,25 @@
         .team-card:hover .social-icon {
             color: #C9A227;
             border-color: #C9A227;
+        }
+        .team-avatar-wrap {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.1rem;
+            background: linear-gradient(135deg, #f4f4f5, #e5e7eb);
+            border: 4px solid rgba(255,255,255,0.85);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+        }
+        .team-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            background: #f3f4f6;
+            filter: saturate(0.9) contrast(1.03);
         }
         .social-icon {
             transition: all 0.2s ease;
@@ -517,7 +537,7 @@
             </div>
         </section>
 
-        <!-- ==================== EQUIPE (MINECRAFT STYLE) ==================== -->
+        <!-- ==================== EQUIPE ==================== -->
         <section id="equipe" class="py-24 lg:py-32 bg-white relative overflow-hidden">
             <div class="team-blob"></div>
 
@@ -540,8 +560,8 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <div class="relative mx-auto w-28 h-28 mb-4">
-                                <img src="https://mc-heads.net/avatar/Dream/100" alt="João Pedro" class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/joao_pedro.webp" alt="João Pedro" class="team-avatar" loading="lazy">
                             </div>
                             <h3 class="text-lg font-bold text-primary">João Pedro</h3>
                             <p class="text-sm text-gold font-medium mb-3">Presidente</p>
@@ -567,7 +587,9 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/GeorgeNotFound/100" alt="José Iago" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/iago.webp" alt="José Iago" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">José Iago</h3>
                             <p class="text-sm text-gold font-medium mb-3">Diretor Comercial</p>
                             <div class="flex justify-center gap-3">
@@ -576,16 +598,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Sapnap/100" alt="Arthur Bastos" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
-                            <h3 class="text-lg font-bold text-primary">Arthur Bastos</h3>
-                            <p class="text-sm text-gold font-medium mb-3">Analista Comercial</p>
-                            <div class="flex justify-center gap-3">
-                                <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold"><i data-feather="linkedin" class="w-4 h-4"></i></a>
-                                <a href="#" class="social-icon w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-gold hover:border-gold"><i data-feather="mail" class="w-4 h-4"></i></a>
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/gustavo.webp" alt="Gustavo Gonçalves" class="team-avatar" loading="lazy">
                             </div>
-                        </div>
-                        <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/TommyInnit/100" alt="Gustavo Gonçalves" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
                             <h3 class="text-lg font-bold text-primary">Gustavo Gonçalves</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista Comercial</p>
                             <div class="flex justify-center gap-3">
@@ -594,7 +609,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Tubbo/100" alt="Deivid" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/deivid.webp" alt="Deivid" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Deivid</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista Comercial</p>
                             <div class="flex justify-center gap-3">
@@ -615,7 +632,9 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Ranboo/100" alt="Iandra Jeysa" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/iandra.webp" alt="Iandra Jeysa" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Iandra Jeysa</h3>
                             <p class="text-sm text-gold font-medium mb-3">Diretora de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -624,7 +643,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/WilburSoot/100" alt="Adriélio Alvaro" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/adrielio.jpeg" alt="Adriélio Alvaro" class="team-avatar" loading="lazy" onerror="this.onerror=null;this.src='assets/logo-caje.png';">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Adriélio Alvaro</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -633,7 +654,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Philza/100" alt="Lucca Felipe" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/lucaa.webp" alt="Lucca Felipe" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Lucca Felipe</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -642,7 +665,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Technoblade/100" alt="Diogo" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/diogo.webp" alt="Diogo" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Diogo</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -651,7 +676,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/CaptainSparklez/100" alt="Júlia Andrade" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/julia.webp" alt="Júlia Andrade" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Júlia Andrade</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -660,7 +687,9 @@
                             </div>
                         </div>
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/DanTDM/100" alt="Luanny" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/luanny.webp" alt="Luanny" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Luanny</h3>
                             <p class="text-sm text-gold font-medium mb-3">Analista de Projetos</p>
                             <div class="flex justify-center gap-3">
@@ -681,7 +710,9 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="animate-on-scroll team-card bg-white rounded-2xl border border-slate-100 p-6 text-center hover:border-gold/30 hover:shadow-xl transition-all duration-300">
-                            <img src="https://mc-heads.net/avatar/Stampy/100" alt="Luiz Francisco" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mx-auto mb-4">
+                            <div class="team-avatar-wrap">
+                                <img src="equipe/luiz.webp" alt="Luiz Francisco" class="team-avatar" loading="lazy">
+                            </div>
                             <h3 class="text-lg font-bold text-primary">Luiz Francisco</h3>
                             <p class="text-sm text-gold font-medium mb-3">Diretor de Gestão de Pessoas</p>
                             <div class="flex justify-center gap-3">
