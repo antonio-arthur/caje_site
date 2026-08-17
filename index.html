@@ -803,23 +803,23 @@
                         </div>
                     </div>
                     <div class="bg-white rounded-3xl p-8 border border-slate-100" id="form-container">
-                        <form id="contact-form" class="space-y-5">
+                        <form id="contact-form" class="space-y-5" action="https://formspree.io/f/mkjwqzoa" method="POST">
                             <h3 class="font-bold text-primary text-lg mb-6">Solicitar consultoria</h3>
                             <div>
                                 <label for="name" class="block text-xs font-semibold text-primary mb-2">Nome completo</label>
-                                <input type="text" id="name" placeholder="João da Silva" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                                <input type="text" id="name" name="nome" placeholder="João da Silva" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
                             </div>
                             <div>
                                 <label for="email" class="block text-xs font-semibold text-primary mb-2">E-mail corporativo</label>
-                                <input type="email" id="email" placeholder="joao@empresa.com.br" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                                <input type="email" id="email" name="email" placeholder="joao@empresa.com.br" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
                             </div>
                             <div>
                                 <label for="org" class="block text-xs font-semibold text-primary mb-2">Organização</label>
-                                <input type="text" id="org" placeholder="Empresa / Prefeitura / Cooperativa" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
+                                <input type="text" id="org" name="organizacao" placeholder="Empresa / Prefeitura / Cooperativa" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all">
                             </div>
                             <div>
                                 <label for="msg" class="block text-xs font-semibold text-primary mb-2">Como podemos ajudar?</label>
-                                <textarea id="msg" rows="4" placeholder="Descreva brevemente o seu desafio ou projeto..." required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all resize-none"></textarea>
+                                <textarea id="msg" name="mensagem" rows="4" placeholder="Descreva brevemente o seu desafio ou projeto..." required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-background text-primary text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-gold/20 focus:border-gold transition-all resize-none"></textarea>
                             </div>
                             <button type="submit" class="w-full py-3.5 rounded-xl bg-gold text-white font-semibold text-sm hover:bg-gold-dark transition-all shadow-sm hover:shadow-md">Enviar solicitação</button>
                             <p class="text-xs text-text-secondary text-center">Seus dados estão seguros. Não compartilhamos com terceiros.</p>
@@ -921,17 +921,17 @@
         const successMessage = document.getElementById('success-message');
         const newMessageBtn = document.getElementById('new-message-btn');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            form.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-        });
+        if (form && successMessage && newMessageBtn) {
+            form.addEventListener('submit', () => {
+                successMessage.classList.add('hidden');
+            });
 
-        newMessageBtn.addEventListener('click', () => {
-            successMessage.classList.add('hidden');
-            form.classList.remove('hidden');
-            form.reset();
-        });
+            newMessageBtn.addEventListener('click', () => {
+                successMessage.classList.add('hidden');
+                form.classList.remove('hidden');
+                form.reset();
+            });
+        }
     </script>
 </body>
 </html>
